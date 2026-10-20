@@ -32,16 +32,16 @@ if st.button("Start Free Autonomous Research"):
         os.environ["OPENROUTER_API_KEY"] = openrouter_key
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
-            st.write("Initializing LLM instances...")
+            st.write("Initializing LLM instances with stable models...")
             
-            # Initialize CrewAI LLM objects
+            # Initialize CrewAI LLM objects with active, stable model slugs
             groq_llm = LLM(model="groq/llama-3.3-70b-versatile")
             gemini_llm = LLM(model="gemini/gemini-1.5-flash")
-            openrouter_llm = LLM(model="openrouter/meta-llama/llama-3-70b-instruct")
+            openrouter_llm = LLM(model="openrouter/meta-llama/llama-3.3-70b-instruct")
 
             st.write("Configuring specialized free model agents...")
             
-            # Agent 1: Orchestration & Planning (Backstory included)
+            # Agent 1: Orchestration & Planning
             orchestrator = Agent(
                 role="Orchestrator",
                 goal=f"Plan research on {topic}",
@@ -50,7 +50,7 @@ if st.button("Start Free Autonomous Research"):
                 verbose=True
             )
             
-            # Agent 2: Document Ingestion & Literature Review (Backstory included)
+            # Agent 2: Document Ingestion & Literature Review
             reviewer = Agent(
                 role="Literature Reviewer",
                 goal=f"Gather data on {topic}",
@@ -60,7 +60,7 @@ if st.button("Start Free Autonomous Research"):
                 verbose=True
             )
             
-            # Agent 3: Synthesis, Critique & Drafting (Backstory included)
+            # Agent 3: Synthesis, Critique & Drafting
             writer = Agent(
                 role="Writer",
                 goal=f"Synthesize report on {topic}",
