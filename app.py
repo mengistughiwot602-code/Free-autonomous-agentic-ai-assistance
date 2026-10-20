@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 
 # ==========================================
 # STREAMLIT UI CONFIGURATION
@@ -32,13 +32,20 @@ if st.button("Start Free Autonomous Research"):
         os.environ["OPENROUTER_API_KEY"] = openrouter_key
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
+            st.write("Initializing LLM instances...")
+            
+            # Initialize official CrewAI LLM objects to satisfy Pydantic validation
+            groq_llm = LLM(model="groq/llama-3.3-70b-versatile", api_key=groq_key)
+            gemini_llm = LLM(model="gemini/gemini-1.5-flash", api_key=gemini_key)
+            openrouter_llm = LLM(model="openrouter/meta-llama/llama-3-70b-instruct", api_key=openrouter_key)
+
             st.write("Configuring specialized free model agents...")
             
             # Agent 1: Orchestration & Planning
             orchestrator = Agent(
                 role="Orchestrator",
                 goal=f"Plan research on {topic}",
-                llm="groq/llama-3.3-70b-versatile",
+                llm=groq_llm,
                 verbose=True
             )
             
@@ -47,7 +54,7 @@ if st.button("Start Free Autonomous Research"):
                 role="Literature Reviewer",
                 goal=f"Gather data on {topic}",
                 tools=[],
-                llm="gemini/gemini-1.5-flash",
+                llm=gemini_llm,
                 verbose=True
             )
             
@@ -55,7 +62,7 @@ if st.button("Start Free Autonomous Research"):
             writer = Agent(
                 role="Writer",
                 goal=f"Synthesize report on {topic}",
-                llm="openrouter/meta-llama/llama-3-70b-instruct",
+                llm=openrouter_llm,
                 verbose=True
             )
 
