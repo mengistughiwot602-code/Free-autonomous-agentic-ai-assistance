@@ -34,34 +34,37 @@ if st.button("Start Free Autonomous Research"):
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Initializing LLM instances...")
             
-            # Initialize CrewAI LLM objects (they automatically read from os.environ)
+            # Initialize CrewAI LLM objects
             groq_llm = LLM(model="groq/llama-3.3-70b-versatile")
             gemini_llm = LLM(model="gemini/gemini-1.5-flash")
             openrouter_llm = LLM(model="openrouter/meta-llama/llama-3-70b-instruct")
 
             st.write("Configuring specialized free model agents...")
             
-            # Agent 1: Orchestration & Planning
+            # Agent 1: Orchestration & Planning (Backstory included)
             orchestrator = Agent(
                 role="Orchestrator",
                 goal=f"Plan research on {topic}",
+                backstory="You excel at task planning, logical flow organization, and structuring research steps efficiently.",
                 llm=groq_llm,
                 verbose=True
             )
             
-            # Agent 2: Document Ingestion & Literature Review
+            # Agent 2: Document Ingestion & Literature Review (Backstory included)
             reviewer = Agent(
                 role="Literature Reviewer",
                 goal=f"Gather data on {topic}",
+                backstory="You leverage massive context windows to ingest technical information, extracting precise facts and data.",
                 tools=[],
                 llm=gemini_llm,
                 verbose=True
             )
             
-            # Agent 3: Synthesis, Critique & Drafting
+            # Agent 3: Synthesis, Critique & Drafting (Backstory included)
             writer = Agent(
                 role="Writer",
                 goal=f"Synthesize report on {topic}",
+                backstory="You take analytical findings and craft polished, publication-grade technical Markdown reports.",
                 llm=openrouter_llm,
                 verbose=True
             )
