@@ -32,9 +32,9 @@ if st.button("Start Free Autonomous Research"):
         os.environ["OPENROUTER_API_KEY"] = openrouter_key
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
-            st.write("Initializing LLM instances with stable models...")
+            st.write("Initializing LLM instances...")
             
-            # Initialize CrewAI LLM objects with active, stable model slugs
+            # Initialize CrewAI LLM objects with stable model slugs
             groq_llm = LLM(model="groq/llama-3.3-70b-versatile")
             gemini_llm = LLM(model="gemini/gemini-1.5-flash")
             openrouter_llm = LLM(model="openrouter/meta-llama/llama-3.3-70b-instruct")
