@@ -34,10 +34,10 @@ if st.button("Start Free Autonomous Research"):
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Initializing LLM instances...")
             
-            # Initialize official CrewAI LLM objects to satisfy Pydantic validation
-            groq_llm = LLM(model="groq/llama-3.3-70b-versatile", api_key=groq_key)
-            gemini_llm = LLM(model="gemini/gemini-1.5-flash", api_key=gemini_key)
-            openrouter_llm = LLM(model="openrouter/meta-llama/llama-3-70b-instruct", api_key=openrouter_key)
+            # Initialize CrewAI LLM objects (they automatically read from os.environ)
+            groq_llm = LLM(model="groq/llama-3.3-70b-versatile")
+            gemini_llm = LLM(model="gemini/gemini-1.5-flash")
+            openrouter_llm = LLM(model="openrouter/meta-llama/llama-3-70b-instruct")
 
             st.write("Configuring specialized free model agents...")
             
