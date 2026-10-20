@@ -1,3 +1,6 @@
 streamlit
 crewai
 litellm
+streamlit
+crewai[google-genai]
+litellm
