@@ -65,7 +65,7 @@ if st.button("Start Multi-Provider Research"):
                 gathered_data = review_response.text
 
                 # ==========================================
-                # AGENT 3: SYNTHESIS & DRAFTING (OpenRouter)
+                # AGENT 3: SYNTHESIS & DRAFTING (OpenRouter - Updated Model)
                 # ==========================================
                 st.write("Agent 3 (Writer) running via OpenRouter...")
                 openrouter_client = OpenAI(
@@ -73,9 +73,9 @@ if st.button("Start Multi-Provider Research"):
                     api_key=openrouter_key
                 )
                 
-                # Using an active, high-availability model ID route via OpenRouter
+                # Using openai/gpt-4o-mini to guarantee active OpenRouter endpoints
                 writer_response = openrouter_client.chat.completions.create(
-                    model="anthropic/claude-3.5-sonnet",
+                    model="openai/gpt-4o-mini",
                     messages=[
                         {"role": "system", "content": "You are a professional academic author. Write a long, highly detailed, publication-grade research paper in Markdown format with full paragraphs, deep context, and exhaustive explanations—avoid short summaries."},
                         {"role": "user", "content": f"Write an extensive, fully fleshed-out research paper on '{topic}'. Use professional academic formatting, deep elaboration, detailed subsections, and synthesize the outline and granular points below:\n\nOutline:\n{research_plan}\n\nAnalytical Points:\n{gathered_data}"}
