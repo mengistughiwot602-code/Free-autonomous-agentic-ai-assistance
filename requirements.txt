@@ -2,3 +2,7 @@ streamlit
 crewai
 litellm
 groq
+streamlit
+groq
+google-generativeai
+openai
