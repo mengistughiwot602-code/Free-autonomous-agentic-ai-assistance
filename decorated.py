@@ -44,7 +44,7 @@ st.markdown("""
         /* Custom Button Styling */
         .stButton>button {
             background: #0f172a;
-            color: white;
+            color: #006400;
             font-weight: 700;
             border-radius: 8px;
             padding: 0.6rem 1.5rem;
