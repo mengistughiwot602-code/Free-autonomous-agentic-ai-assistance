@@ -73,11 +73,11 @@ st.markdown("""
 with st.sidebar:
     st.image("https://img.icons8.com/ios-filled/100/ffffff/artificial-intelligence.png", width=60)
     st.header("🔑 API Configuration")
-    st.markdown("Fill in your required provider credentials below:")
+    st.markdown("Fill the required fields bellow first:")
     
-    groq_key = st.text_input("Groq API Key (Orchestration)", type="password", help="Used for rapid planning & structuring")
-    gemini_key = st.text_input("Gemini API Key (Analysis)", type="password", help="Used for deep literature review")
-    openrouter_key = st.text_input("OpenRouter API Key (Writing)", type="password", help="Used for full academic report generation")
+    groq_key = st.text_input("Groq API Key", type="password", help="Used for rapid planning & structuring")
+    gemini_key = st.text_input("Gemini API Key ", type="password", help="Used for deep literature review")
+    openrouter_key = st.text_input("OpenRouter API Key ", type="password", help="Used for full academic report generation")
     
     st.markdown("---")
     st.markdown("<p class='footer-text'>Developed by DSstudents@bdu</p>", unsafe_allow_html=True)
