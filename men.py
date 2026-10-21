@@ -24,16 +24,15 @@ if st.button("Start Free Autonomous Research"):
     elif not topic.strip():
         st.warning("Please enter a valid research topic.")
     else:
-        # Set environment variable securely from user input
+        # Set environment variable securely so LiteLLM detects it natively
         os.environ["GROQ_API_KEY"] = groq_key
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Configuring specialized free model agents...")
             
-            # Initialize the official CrewAI LLM instance to prevent routing errors
+            # Initialize LLM natively via environment variables without passing api_key argument
             groq_llm = LLM(
-                model="groq/llama-3.3-70b-versatile",
-                api_key=groq_key
+                model="groq/llama-3.3-70b-versatile"
             )
             
             # Agent 1: Orchestration & Planning
