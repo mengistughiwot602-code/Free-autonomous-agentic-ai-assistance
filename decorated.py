@@ -53,7 +53,7 @@ st.markdown("""
             transition: all 0.3s ease;
         }
         .stButton>button:hover {
-            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            background:#334155;
             box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3);
             transform: translateY(-1px);
         }
