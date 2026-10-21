@@ -24,15 +24,19 @@ if st.button("Start Free Autonomous Research"):
     elif not topic.strip():
         st.warning("Please enter a valid research topic.")
     else:
-        # Set environment variable securely so LiteLLM detects it natively
+        # Set environment variables for both Groq and OpenAI compatibility layers
         os.environ["GROQ_API_KEY"] = groq_key
+        os.environ["OPENAI_API_KEY"] = groq_key
+        os.environ["OPENAI_API_BASE"] = "https://api.groq.com/openai/v1"
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Configuring specialized free model agents...")
             
-            # Initialize LLM natively via environment variables without passing api_key argument
+            # Use OpenAI-compatible provider targeting Groq directly to avoid LiteLLM translation bugs
             groq_llm = LLM(
-                model="groq/llama-3.3-70b-versatile"
+                model="openai/llama-3.3-70b-versatile",
+                base_url="https://api.groq.com/openai/v1",
+                api_key=groq_key
             )
             
             # Agent 1: Orchestration & Planning
