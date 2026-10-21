@@ -1,78 +1,93 @@
 import os
 import streamlit as st
 from groq import Groq
+import google.generativeai as genai
+from openai import OpenAI
 
 # ==========================================
 # STREAMLIT UI CONFIGURATION
 # ==========================================
-st.set_page_config(page_title="Free Multi-AI Autonomous Researcher", layout="wide")
-st.title("Free Multi-AI Autonomous Research Assistant")
-st.write("Powered by GroqCloud with zero search keys required!")
+st.set_page_config(page_title="Multi-Provider Autonomous Researcher", layout="wide")
+st.title("Multi-AI Autonomous Research Assistant")
+st.write("Powered by Groq, Gemini, and OpenRouter")
 
-# Sidebar for API Key Setup
+# Sidebar for Multi-API Key Setup
 with st.sidebar:
-    st.header("Free API Key Setup")
-    groq_key = st.text_input("Groq API Key", type="password")
+    st.header("API Key Configuration")
+    groq_key = st.text_input("Groq API Key (Orchestration)", type="password")
+    gemini_key = st.text_input("Gemini API Key (Analysis)", type="password")
+    openrouter_key = st.text_input("OpenRouter API Key (Writing)", type="password")
     st.markdown("---")
-    st.markdown("Built with Groq & Streamlit")
+    st.markdown("Multi-Model Pipeline Enabled")
 
 topic = st.text_input("Enter your research topic:", value="")
 
-if st.button("Start Free Autonomous Research"):
-    if not groq_key:
-        st.error("Please provide your Groq API key in the sidebar.")
+if st.button("Start Multi-Provider Research"):
+    if not (groq_key and gemini_key and openrouter_key):
+        st.error("Please provide all three API keys in the sidebar to run the multi-provider pipeline.")
     elif not topic.strip():
         st.warning("Please enter a valid research topic.")
     else:
         try:
-            # Initialize the official Groq client
-            client = Groq(api_key=groq_key)
-            
-            # Active supported model ID on Groq
-            model_name = "openai/gpt-oss-20b"
-
-            with st.status("Free multi-agent crew is working...", expanded=True) as status:
+            with st.status("Multi-AI pipeline executing deep research...", expanded=True) as status:
                 
-                # Step 1: Orchestration & Planning Agent
-                st.write("Agent 1 (Orchestrator) is planning the research...")
-                plan_response = client.chat.completions.create(
-                    model=model_name,
+                # ==========================================
+                # AGENT 1: ORCHESTRATION (Groq - openai/gpt-oss-20b)
+                # ==========================================
+                st.write("Agent 1 (Orchestrator) running on Groq (using verified working model)...")
+                groq_client = Groq(api_key=groq_key)
+                
+                plan_response = groq_client.chat.completions.create(
+                    model="openai/gpt-oss-20b",
                     messages=[
-                        {"role": "system", "content": "You are an expert research coordinator skilled at breaking down complex topics into clear, structured research plans."},
-                        {"role": "user", "content": f"Create a comprehensive research plan outline for the topic: {topic}"}
+                        {"role": "system", "content": "You are an elite academic research director. Create an exhaustive, multi-part chapter outline for a comprehensive research paper."},
+                        {"role": "user", "content": f"Create a detailed 5-part structural outline for an extensive research paper on: {topic}"}
                     ],
-                    temperature=0.5
+                    temperature=0.4,
+                    max_tokens=1500
                 )
                 research_plan = plan_response.choices[0].message.content
 
-                # Step 2: Literature Review / Fact-Finding Agent
-                st.write("Agent 2 (Literature Reviewer) is gathering data and facts...")
-                review_response = client.chat.completions.create(
-                    model=model_name,
-                    messages=[
-                        {"role": "system", "content": "You are a meticulous literature reviewer who extracts deep insights, factual data, and reliable information based on a research plan."},
-                        {"role": "user", "content": f"Based on this plan, gather factual information and data points for '{topic}':\n\n{research_plan}"}
-                    ],
-                    temperature=0.5
-                )
-                gathered_data = review_response.choices[0].message.content
+                # ==========================================
+                # AGENT 2: LITERATURE REVIEW (Google Gemini)
+                # ==========================================
+                st.write("Agent 2 (Literature Reviewer) running on Google Gemini...")
+                genai.configure(api_key=gemini_key)
+                gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+                
+                review_prompt = f"""
+                You are a rigorous academic reviewer. Based on the outline below, generate deep analytical insights, data perspectives, and theoretical frameworks for '{topic}':
+                
+                Outline:
+                {research_plan}
+                """
+                review_response = gemini_model.generate_content(review_prompt)
+                gathered_data = review_response.text
 
-                # Step 3: Synthesis & Drafting Agent (Writer)
-                st.write("Agent 3 (Writer) is synthesizing the final report...")
-                writer_response = client.chat.completions.create(
-                    model=model_name,
+                # ==========================================
+                # AGENT 3: SYNTHESIS & DRAFTING (OpenRouter)
+                # ==========================================
+                st.write("Agent 3 (Writer) running via OpenRouter...")
+                openrouter_client = OpenAI(
+                    base_url="https://openrouter.ai/api/v1",
+                    api_key=openrouter_key
+                )
+                
+                writer_response = openrouter_client.chat.completions.create(
+                    model="anthropic/claude-3.5-sonnet", # Can be changed to deepseek/deepseek-chat or any preferred OpenRouter model
                     messages=[
-                        {"role": "system", "content": "You are an expert technical writer who turns research outlines and data points into polished, comprehensive markdown reports."},
-                        {"role": "user", "content": f"Write a final, polished Markdown report on '{topic}' using the plan and gathered facts below:\n\nPlan:\n{research_plan}\n\nFacts:\n{gathered_data}"}
+                        {"role": "system", "content": "You are a professional academic author. Write a long, highly detailed, publication-grade research paper in Markdown format with full paragraphs, deep context, and exhaustive explanations—avoid short summaries."},
+                        {"role": "user", "content": f"Write an extensive, fully fleshed-out research paper on '{topic}'. Use professional academic formatting, deep elaboration, detailed subsections, and synthesize the outline and granular points below:\n\nOutline:\n{research_plan}\n\nAnalytical Points:\n{gathered_data}"}
                     ],
-                    temperature=0.5
+                    temperature=0.4,
+                    max_tokens=4096
                 )
                 final_report = writer_response.choices[0].message.content
 
-                status.update(label="Research Completed successfully!", state="complete")
+                status.update(label="Comprehensive Research Completed Successfully!", state="complete")
 
-            st.subheader("Final Generated Report")
+            st.subheader("Final Publication-Grade Research Report")
             st.markdown(final_report)
 
         except Exception as e:
-            st.error(f"An error occurred during execution: {str(e)}")
+            st.error(f"An error occurred during multi-provider execution: {str(e)}")
