@@ -43,13 +43,13 @@ st.markdown("""
         }
         /* Custom Button Styling */
         .stButton>button {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: #0f172a;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 8px;
             padding: 0.6rem 1.5rem;
-            border: none;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            border: 2px solid #3b82f6;
+            box-shadow: 0 6px 12px -1px rgba(59, 130, 246, 0.3);
             transition: all 0.3s ease;
         }
         .stButton>button:hover {
