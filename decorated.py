@@ -106,7 +106,7 @@ if st.button("🚀 Start Autonomous Research"):
             with st.status("🔄 Multi-AI pipeline executing deep research...", expanded=True) as status:
                 
                 # Step 1: Groq Orchestration
-                st.write("🤖 Agent 1 (Orchestrator) running on Groq (`openai/gpt-oss-20b`)...")
+                st.write("🤖 Planning the task")
                 groq_client = Groq(api_key=groq_key)
                 
                 plan_response = groq_client.chat.completions.create(
@@ -121,7 +121,7 @@ if st.button("🚀 Start Autonomous Research"):
                 research_plan = plan_response.choices[0].message.content
 
                 # Step 2: Gemini Analysis
-                st.write("🧠 Agent 2 (Literature Reviewer) running on Google Gemini (`gemini-3.8-flash`)...")
+                st.write("🧠 Literature Reviewer running ")
                 genai.configure(api_key=gemini_key)
                 gemini_model = genai.GenerativeModel("gemini-3.8-flash")
                 
@@ -135,7 +135,7 @@ if st.button("🚀 Start Autonomous Research"):
                 gathered_data = review_response.text
 
                 # Step 3: OpenRouter Writing
-                st.write("✍️ Agent 3 (Writer) running via OpenRouter (`openai/gpt-4o-mini`)...")
+                st.write("✍️ Writting the paper")
                 openrouter_client = OpenAI(
                     base_url="https://openrouter.ai/api/v1",
                     api_key=openrouter_key
@@ -155,7 +155,7 @@ if st.button("🚀 Start Autonomous Research"):
                 status.update(label="✨ Comprehensive Research Completed Successfully!", state="complete")
 
             st.markdown("---")
-            st.header("📄 Final Publication-Grade Research Report")
+            st.header("📄 This Is all About Your Research")
             st.markdown(final_report)
 
         except Exception as e:
