@@ -38,6 +38,7 @@ if st.button("Start Free Autonomous Research"):
             orchestrator = Agent(
                 role="Orchestrator",
                 goal=f"Plan research on {topic}",
+                backstory="You are an expert research coordinator skilled at breaking down complex topics into clear, structured research plans.",
                 llm="groq/llama-3.3-70b-versatile",
                 verbose=True
             )
@@ -46,6 +47,7 @@ if st.button("Start Free Autonomous Research"):
             reviewer = Agent(
                 role="Literature Reviewer",
                 goal=f"Gather data on {topic}",
+                backstory="You are a meticulous literature reviewer who extracts deep insights, factual data, and reliable information.",
                 tools=[],
                 llm="gemini/gemini-1.5-flash",
                 verbose=True
@@ -55,6 +57,7 @@ if st.button("Start Free Autonomous Research"):
             writer = Agent(
                 role="Writer",
                 goal=f"Synthesize report on {topic}",
+                backstory="You are an expert technical writer who turns rough outlines and data points into polished, comprehensive markdown reports.",
                 llm="openrouter/meta-llama/llama-3-70b-instruct",
                 verbose=True
             )
