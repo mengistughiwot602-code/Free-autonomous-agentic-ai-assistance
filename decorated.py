@@ -71,7 +71,7 @@ st.markdown("""
 # SIDEBAR CONFIGURATION
 # ==========================================
 with st.sidebar:
-    st.image("https://images.unsplash.com/photo-...your-image-url...", caption="Hey Reseacher", width=60)
+    st.image("https://images.unsplash.com/photo-...your-image-url...", caption="Hey what can I hep your", width=60)
     st.header("🔑 API Configurations")
     st.markdown("Fill the required fields bellow first:")
     
