@@ -71,7 +71,7 @@ st.markdown("""
 # SIDEBAR CONFIGURATION
 # ==========================================
 with st.sidebar:
-    st.image("🐁", width=60)
+    st.image("🐁")
     st.header("🔑 API Configurations")
     st.markdown("Fill the required fields bellow first:")
     
