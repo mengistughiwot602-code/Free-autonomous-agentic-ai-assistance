@@ -28,8 +28,8 @@ if st.button("Start Free Autonomous Research"):
             # Initialize the official Groq client
             client = Groq(api_key=groq_key)
             
-            # Use the verified active production model ID
-            model_name = "llama-3.3-70b-versatile"
+            # Active supported model ID on Groq
+            model_name = "openai/gpt-oss-20b"
 
             with st.status("Free multi-agent crew is working...", expanded=True) as status:
                 
