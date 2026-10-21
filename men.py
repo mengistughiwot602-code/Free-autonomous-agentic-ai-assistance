@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 
 # ==========================================
 # STREAMLIT UI CONFIGURATION
@@ -30,12 +30,18 @@ if st.button("Start Free Autonomous Research"):
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Configuring specialized free model agents...")
             
+            # Initialize the official CrewAI LLM instance to prevent routing errors
+            groq_llm = LLM(
+                model="groq/llama-3.3-70b-versatile",
+                api_key=groq_key
+            )
+            
             # Agent 1: Orchestration & Planning
             orchestrator = Agent(
                 role="Orchestrator",
                 goal=f"Plan research on {topic}",
                 backstory="You are an expert research coordinator skilled at breaking down complex topics into clear, structured research plans.",
-                llm="groq/llama-3.3-70b-versatile",
+                llm=groq_llm,
                 verbose=True
             )
             
@@ -45,7 +51,7 @@ if st.button("Start Free Autonomous Research"):
                 goal=f"Gather data on {topic}",
                 backstory="You are a meticulous literature reviewer who extracts deep insights, factual data, and reliable information.",
                 tools=[],
-                llm="groq/llama-3.3-70b-versatile",
+                llm=groq_llm,
                 verbose=True
             )
             
@@ -54,7 +60,7 @@ if st.button("Start Free Autonomous Research"):
                 role="Writer",
                 goal=f"Synthesize report on {topic}",
                 backstory="You are an expert technical writer who turns rough outlines and data points into polished, comprehensive markdown reports.",
-                llm="groq/llama-3.3-70b-versatile",
+                llm=groq_llm,
                 verbose=True
             )
 
