@@ -9,20 +9,20 @@ from openai import OpenAI
 # ==========================================
 st.set_page_config(page_title="Multi-Provider Autonomous Researcher", layout="wide")
 st.title("Multi-AI Autonomous Research Assistant")
-st.write("Powered by Groq, Gemini, and OpenRouter")
+st.write("This is a highly powerd AI bring the research topic what you want to do ")
 
 # Sidebar for Multi-API Key Setup
 with st.sidebar:
-    st.header("API Key Configuration")
+    st.header("Fill the required fields bellow first")
     groq_key = st.text_input("Groq API Key (Orchestration)", type="password")
     gemini_key = st.text_input("Gemini API Key (Analysis)", type="password")
     openrouter_key = st.text_input("OpenRouter API Key (Writing)", type="password")
     st.markdown("---")
-    st.markdown("Multi-Model Pipeline Enabled")
+    st.markdown("done by DSstudents@bdu")
 
 topic = st.text_input("Enter your research topic:", value="")
 
-if st.button("Start Multi-Provider Research"):
+if st.button("Start Working The Research"):
     if not (groq_key and gemini_key and openrouter_key):
         st.error("Please provide all three API keys in the sidebar to run the multi-provider pipeline.")
     elif not topic.strip():
