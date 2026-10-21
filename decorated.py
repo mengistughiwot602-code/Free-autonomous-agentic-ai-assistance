@@ -71,7 +71,7 @@ st.markdown("""
 # SIDEBAR CONFIGURATION
 # ==========================================
 with st.sidebar:
-    st.image("https://img.icons8.com/ios-filled/100/ffffff/artificial-intelligence.png", width=60)
+    st.image("blob:https://gemini.google.com/8b3ea60b-4a07-428a-aa06-e3133a353a82", width=60)
     st.header("🔑 API Configurations")
     st.markdown("Fill the required fields bellow first:")
     
