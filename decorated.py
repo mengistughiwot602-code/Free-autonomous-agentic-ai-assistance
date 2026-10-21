@@ -86,7 +86,7 @@ with st.sidebar:
 # MAIN PAGE CONTENT
 # ==========================================
 st.title("⚡ Multi-AI Autonomous Research Assistant")
-st.markdown("This advanced multi-agent framework orchestrates Groq, Gemini, and OpenRouter to generate publication-grade long-form academic research papers.")
+st.markdown("This advanced multi-agent framework  to generate publication-grade long-form academic research papers.")
 
 st.markdown("### 📝 Research Configuration")
 topic = st.text_input("Enter your research topic:", placeholder="e.g., Impact of Climate Change on Sub-Saharan Agriculture")
@@ -96,7 +96,7 @@ st.markdown("")
 # ==========================================
 # EXECUTION PIPELINE
 # ==========================================
-if st.button("🚀 Start Autonomous Research"):
+if st.button("🚀 Start Working Research"):
     if not (groq_key and gemini_key and openrouter_key):
         st.error("⚠️ Please provide all three API keys in the sidebar before starting the research pipeline.")
     elif not topic.strip():
