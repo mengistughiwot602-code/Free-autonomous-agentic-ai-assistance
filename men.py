@@ -32,9 +32,9 @@ if st.button("Start Multi-Provider Research"):
             with st.status("Multi-AI pipeline executing deep research...", expanded=True) as status:
                 
                 # ==========================================
-                # AGENT 1: ORCHESTRATION (Groq - openai/gpt-oss-20b)
+                # AGENT 1: ORCHESTRATION (Groq - Unchanged & Stable)
                 # ==========================================
-                st.write("Agent 1 (Orchestrator) running on Groq (using verified working model)...")
+                st.write("Agent 1 (Orchestrator) running on Groq...")
                 groq_client = Groq(api_key=groq_key)
                 
                 plan_response = groq_client.chat.completions.create(
@@ -53,7 +53,7 @@ if st.button("Start Multi-Provider Research"):
                 # ==========================================
                 st.write("Agent 2 (Literature Reviewer) running on Google Gemini...")
                 genai.configure(api_key=gemini_key)
-                gemini_model = genai.GenerativeModel("gemini-2.5-flash")
+                gemini_model = genai.GenerativeModel("gemini-3.8-flash")
                 
                 review_prompt = f"""
                 You are a rigorous academic reviewer. Based on the outline below, generate deep analytical insights, data perspectives, and theoretical frameworks for '{topic}':
@@ -74,7 +74,7 @@ if st.button("Start Multi-Provider Research"):
                 )
                 
                 writer_response = openrouter_client.chat.completions.create(
-                    model="anthropic/claude-3.5-sonnet", # Can be changed to deepseek/deepseek-chat or any preferred OpenRouter model
+                    model="anthropic/claude-3.5-sonnet",
                     messages=[
                         {"role": "system", "content": "You are a professional academic author. Write a long, highly detailed, publication-grade research paper in Markdown format with full paragraphs, deep context, and exhaustive explanations—avoid short summaries."},
                         {"role": "user", "content": f"Write an extensive, fully fleshed-out research paper on '{topic}'. Use professional academic formatting, deep elaboration, detailed subsections, and synthesize the outline and granular points below:\n\nOutline:\n{research_plan}\n\nAnalytical Points:\n{gathered_data}"}
