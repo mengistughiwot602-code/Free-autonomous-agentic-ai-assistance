@@ -9,27 +9,23 @@ st.set_page_config(page_title="Free Multi-AI Autonomous Researcher", layout="wid
 st.title("Free Multi-AI Autonomous Research Assistant")
 st.write("Powered by GroqCloud with zero search keys required!")
 
-# Sidebar for API Keys Setup
+# Sidebar for API Key Setup
 with st.sidebar:
-    st.header("Free API Keys Setup")
+    st.header("Free API Key Setup")
     groq_key = st.text_input("Groq API Key", type="password")
-    gemini_key = st.text_input("Google Gemini API Key", type="password")
-    openrouter_key = st.text_input("OpenRouter API Key", type="password")
     st.markdown("---")
     st.markdown("Built with [CrewAI](https://crewai.com)")
 
 topic = st.text_input("Enter your research topic:", value="")
 
 if st.button("Start Free Autonomous Research"):
-    if not all([groq_key, gemini_key, openrouter_key]):
-        st.error("Please provide all required free API keys in the sidebar.")
+    if not groq_key:
+        st.error("Please provide your Groq API key in the sidebar.")
     elif not topic.strip():
         st.warning("Please enter a valid research topic.")
     else:
-        # Set environment variables securely from user inputs
+        # Set environment variable securely from user input
         os.environ["GROQ_API_KEY"] = groq_key
-        os.environ["GEMINI_API_KEY"] = gemini_key
-        os.environ["OPENROUTER_API_KEY"] = openrouter_key
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Configuring specialized free model agents...")
