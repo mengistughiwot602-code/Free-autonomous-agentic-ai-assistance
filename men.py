@@ -24,18 +24,23 @@ if st.button("Start Free Autonomous Research"):
     elif not topic.strip():
         st.warning("Please enter a valid research topic.")
     else:
-        # Set the environment variable natively
+        # Set environment variables securely
         os.environ["GROQ_API_KEY"] = groq_key
+        os.environ["OPENAI_API_KEY"] = groq_key
+        os.environ["OPENAI_API_BASE"] = "https://api.groq.com/openai/v1"
 
         with st.status("Free multi-agent crew is working...", expanded=True) as status:
             st.write("Configuring specialized free model agents...")
             
+            # Using the direct OpenAI-compatible model string identifier
+            model_name = "openai/llama-3.3-70b-versatile"
+
             # Agent 1: Orchestration & Planning
             orchestrator = Agent(
                 role="Orchestrator",
                 goal=f"Plan research on {topic}",
                 backstory="You are an expert research coordinator skilled at breaking down complex topics into clear, structured research plans.",
-                llm="groq/llama-3.3-70b-versatile",
+                llm=model_name,
                 verbose=True
             )
             
@@ -45,7 +50,7 @@ if st.button("Start Free Autonomous Research"):
                 goal=f"Gather data on {topic}",
                 backstory="You are a meticulous literature reviewer who extracts deep insights, factual data, and reliable information.",
                 tools=[],
-                llm="groq/llama-3.3-70b-versatile",
+                llm=model_name,
                 verbose=True
             )
             
@@ -54,7 +59,7 @@ if st.button("Start Free Autonomous Research"):
                 role="Writer",
                 goal=f"Synthesize report on {topic}",
                 backstory="You are an expert technical writer who turns rough outlines and data points into polished, comprehensive markdown reports.",
-                llm="groq/llama-3.3-70b-versatile",
+                llm=model_name,
                 verbose=True
             )
 
