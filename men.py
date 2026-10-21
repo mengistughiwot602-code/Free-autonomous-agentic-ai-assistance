@@ -37,7 +37,7 @@ if st.button("Start Free Autonomous Research"):
                     model=model_name,
                     messages=[
                         {"role": "system", "content": "You are an expert research coordinator skilled at breaking down complex topics into clear, structured research plans."},
-                        {"role": "user", "num_results": 1, "content": f"Create a comprehensive research plan outline for the topic: {topic}"}
+                        {"role": "user", "content": f"Create a comprehensive research plan outline for the topic: {topic}"}
                     ],
                     temperature=0.5
                 )
@@ -49,7 +49,7 @@ if st.button("Start Free Autonomous Research"):
                     model=model_name,
                     messages=[
                         {"role": "system", "content": "You are a meticulous literature reviewer who extracts deep insights, factual data, and reliable information based on a research plan."},
-                        {"role": "user", "num_results": 1, "content": f"Based on this plan, gather factual information and data points for '{topic}':\n\n{research_plan}"}
+                        {"role": "user", "content": f"Based on this plan, gather factual information and data points for '{topic}':\n\n{research_plan}"}
                     ],
                     temperature=0.5
                 )
@@ -61,7 +61,7 @@ if st.button("Start Free Autonomous Research"):
                     model=model_name,
                     messages=[
                         {"role": "system", "content": "You are an expert technical writer who turns research outlines and data points into polished, comprehensive markdown reports."},
-                        {"role": "user", "num_results": 1, "content": f"Write a final, polished Markdown report on '{topic}' using the plan and gathered facts below:\n\nPlan:\n{research_plan}\n\nFacts:\n{gathered_data}"}
+                        {"role": "user", "content": f"Write a final, polished Markdown report on '{topic}' using the plan and gathered facts below:\n\nPlan:\n{research_plan}\n\nFacts:\n{gathered_data}"}
                     ],
                     temperature=0.5
                 )
