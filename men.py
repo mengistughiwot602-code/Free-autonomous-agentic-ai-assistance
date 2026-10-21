@@ -32,7 +32,7 @@ if st.button("Start Multi-Provider Research"):
             with st.status("Multi-AI pipeline executing deep research...", expanded=True) as status:
                 
                 # ==========================================
-                # AGENT 1: ORCHESTRATION (Groq - Unchanged & Stable)
+                # AGENT 1: ORCHESTRATION (Groq - Unchanged)
                 # ==========================================
                 st.write("Agent 1 (Orchestrator) running on Groq...")
                 groq_client = Groq(api_key=groq_key)
@@ -49,7 +49,7 @@ if st.button("Start Multi-Provider Research"):
                 research_plan = plan_response.choices[0].message.content
 
                 # ==========================================
-                # AGENT 2: LITERATURE REVIEW (Google Gemini)
+                # AGENT 2: LITERATURE REVIEW (Google Gemini - Unchanged)
                 # ==========================================
                 st.write("Agent 2 (Literature Reviewer) running on Google Gemini...")
                 genai.configure(api_key=gemini_key)
@@ -73,6 +73,7 @@ if st.button("Start Multi-Provider Research"):
                     api_key=openrouter_key
                 )
                 
+                # Using an active, high-availability model ID route via OpenRouter
                 writer_response = openrouter_client.chat.completions.create(
                     model="anthropic/claude-3.5-sonnet",
                     messages=[
