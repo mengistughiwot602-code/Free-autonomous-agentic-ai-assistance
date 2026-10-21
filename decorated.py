@@ -71,7 +71,7 @@ st.markdown("""
 # SIDEBAR CONFIGURATION
 # ==========================================
 with st.sidebar:
-    st.image("https://images.unsplash.com/photo-...your-image-url...", caption="Hey what can I hep your", width=60)
+    st.image("https://images.unsplash.com/photo-...your-image-url...", caption="Hey what can I hep you", width=60)
     st.header("🔑 API Configurations")
     st.markdown("Fill the required fields bellow first:")
     
@@ -88,7 +88,7 @@ with st.sidebar:
 st.title("⚡ Multi-AI Autonomous Research Assistant")
 st.markdown("This is an advanced multi-agent framework  to generate publication academic research papers.")
 
-st.markdown("### 📝 Research Configuration")
+st.markdown("### 📝  I AM READY TO HELP YOU")
 topic = st.text_input("Enter your research topic:", placeholder="e.g., Impact of Climate Change on Sub-Saharan Agriculture")
 
 st.markdown("")
