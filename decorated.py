@@ -88,7 +88,7 @@ with st.sidebar:
 st.title("⚡ Multi-AI Autonomous Research Assistant")
 st.markdown("This is an advanced multi-agent framework  to generate publication academic research papers.")
 
-st.markdown("### 📝 Research Configurations")
+st.markdown("### 📝 Research Configuration")
 topic = st.text_input("Enter your research topic:", placeholder="e.g., Impact of Climate Change on Sub-Saharan Agriculture")
 
 st.markdown("")
