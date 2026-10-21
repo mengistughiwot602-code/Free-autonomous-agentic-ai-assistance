@@ -72,7 +72,7 @@ st.markdown("""
 # ==========================================
 with st.sidebar:
     st.image("https://img.icons8.com/ios-filled/100/ffffff/artificial-intelligence.png", width=60)
-    st.header("🔑 API Configuration")
+    st.header("🔑 API Configurations")
     st.markdown("Fill the required fields bellow first:")
     
     groq_key = st.text_input("Groq API Key", type="password", help="Used for rapid planning & structuring")
@@ -86,9 +86,9 @@ with st.sidebar:
 # MAIN PAGE CONTENT
 # ==========================================
 st.title("⚡ Multi-AI Autonomous Research Assistant")
-st.markdown("This advanced multi-agent framework  to generate publication-grade long-form academic research papers.")
+st.markdown("This is an advanced multi-agent framework  to generate publication academic research papers.")
 
-st.markdown("### 📝 Research Configuration")
+st.markdown("### 📝 Research Configurations")
 topic = st.text_input("Enter your research topic:", placeholder="e.g., Impact of Climate Change on Sub-Saharan Agriculture")
 
 st.markdown("")
