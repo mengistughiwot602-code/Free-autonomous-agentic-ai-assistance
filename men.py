@@ -27,7 +27,8 @@ if st.button("Start Free Autonomous Research"):
         try:
             # Initialize the official Groq client
             client = Groq(api_key=groq_key)
-            # Using llama-3.1-8b-instant for guaranteed free tier availability & speed
+            
+            # Active Groq model identifier
             model_name = "llama-3.1-8b-instant"
 
             with st.status("Free multi-agent crew is working...", expanded=True) as status:
