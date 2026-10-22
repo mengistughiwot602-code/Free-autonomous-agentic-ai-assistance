@@ -76,9 +76,9 @@ with st.sidebar:
     st.header("🔑 API Configurations")
     st.markdown("Fill the required fields bellow first:")
     
-    groq_key = st.text_input("Groq API Key", type="password", help="Used for rapid planning & structuring")
-    gemini_key = st.text_input("Gemini API Key ", type="password", help="Used for deep literature review")
-    openrouter_key = st.text_input("OpenRouter API Key ", type="password", help="Used for full academic report generation")
+    groq_key = st.text_input("Key one", type="password", help="Used for rapid planning & structuring")
+    gemini_key = st.text_input("Key Two ", type="password", help="Used for deep literature review")
+    openrouter_key = st.text_input("Key Three ", type="password", help="Used for full academic report generation")
     
     st.markdown("---")
     st.markdown("<p class='footer-text'>Developed by DSstudents@bdu</p>", unsafe_allow_html=True)
