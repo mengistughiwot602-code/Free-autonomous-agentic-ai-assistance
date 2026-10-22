@@ -89,7 +89,7 @@ st.title("⚡ Multi-AI Autonomous Research Assistant")
 st.markdown("This is an advanced multi-agent framework  to generate publication academic research papers.")
 
 st.markdown("### 📝  I AM READY TO HELP YOU")
-topic = st.text_input("Enter your research topic:", placeholder="e.g.,Predicting Economic Growth in Ethiopia Using Machine Learning Techniques.")
+topic = st.text_input("Enter your Research topic:", placeholder="e.g.,Predicting Economic Growth in Ethiopia Using Machine Learning Techniques.")
 
 st.markdown("")
 
