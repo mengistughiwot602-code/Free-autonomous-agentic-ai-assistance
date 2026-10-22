@@ -122,7 +122,7 @@ if st.button("🚀 Start Working Research"):
                 research_plan = plan_response.choices[0].message.content
 
                 # 12-second delay after Groq execution
-                time.sleep(12)
+                time.sleep(45)
 
                 # Step 2: Gemini Analysis
                 st.write("🧠 Literature Reviewer running ")
